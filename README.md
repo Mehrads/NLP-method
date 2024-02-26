@@ -13,6 +13,7 @@ The model employs a two-step approach:
 
 ## Preprocessing
 Preprocessing steps include cleaning, tokenization, and vectorization, preparing raw text for the model.
+**Note:** Download pickled glove from here https://www.kaggle.com/datasets/authman/pickled-glove840b300d-for-10sec-loading
 
 ## Requirements
 - TensorFlow
