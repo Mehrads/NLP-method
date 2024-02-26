@@ -23,7 +23,7 @@ Preprocessing steps include cleaning, tokenization, and vectorization, preparing
 Refer to `requirements.txt` for a full list.
 
 ## Quick Start
-1. Clone the repository: git clone h[ttps://github.com/your-repository.git](https://github.com/Mehrads/NLP-method)https://github.com/Mehrads/NLP-method
+1. Clone the repository: git clone [https://github.com/your-repository.git](https://github.com/Mehrads/NLP-method)https://github.com/Mehrads/NLP-method
 2. Install dependencies: pip install -r requirements.txt
 3. Run the model: python quick-start.py
 
