@@ -29,7 +29,7 @@ Refer to `requirements.txt` for a full list.
 2. Install dependencies: pip install -r requirements.txt
 3. Run the model: python quick-start.py
 
-
+**I highly recommend you use google colab to see the outcome of my model.**
 
 
 
