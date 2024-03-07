@@ -3,6 +3,8 @@
 ## Project Overview
 This project aims to use advanced machine learning techniques, specifically Recurrent Neural Networks (RNNs) and Transformers, to detect potential suicide risk from social media posts. The goal is to categorize posts into 'Suicide' and 'Non-Suicide' to facilitate timely intervention for individuals in distress.
 
+**Link to colab**: https://colab.research.google.com/drive/1WClnZj4et4F0AAcM_tJ3vMMGPLCEb7d3#scrollTo=hHo__q6vN-jx
+
 ## Dataset
 The data is from kaggle suicide detection dataset. The dataset includes anonymized social media posts labeled for suicide risk. https://www.kaggle.com/datasets/nikhileswarkomati/suicide-watch
 
