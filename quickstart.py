@@ -1,5 +1,6 @@
 # git clone https://github.com/Mehrads/NLP-method
 # pip install -r requirements.txt
+
 from wordcloud import WordCloud
 import numpy as np
 import pandas as pd
@@ -23,17 +24,19 @@ import seaborn as sns
 import pickle
 import warnings
 warnings.filterwarnings('ignore')
-text = "Am I weird I don't get affected by compliments if it's coming from someone I know irl but I feel really good when internet strangers do it"
-def clean_text(text):
-    text_length=[]
-    cleaned_text=[]
-    for sent in tqdm(text):
-        sent=sent.lower()
-        sent=nfx.remove_special_characters(sent)
-        sent=nfx.remove_stopwords(sent)
-        text_length.append(len(sent.split()))
-        cleaned_text.append(sent)
-    return cleaned_text,text_length
+
+text = "I want to do something bad to end my life!"
+with open('tokenizer.pkl', 'rb') as t:
+    tokenizers = pickle.load(t)
+
+
+
+def clean_text_single(text):
+    text = text.lower()
+    text = nfx.remove_special_characters(text)
+    text = nfx.remove_stopwords(text)
+    return text
+
 
 class TransformerEncoder(tf.keras.layers.Layer):
     def __init__(self, head_size, num_heads, ff_dim, dropout=0, **kwargs):
@@ -59,18 +62,18 @@ class TransformerEncoder(tf.keras.layers.Layer):
         ffn_output = self.dropout2(ffn_output, training=training)
         return self.norm2(out1 + ffn_output)
 
+hybrid_model = load_model('hybrid_model.h5', custom_objects={'TransformerEncoder': TransformerEncoder})
+
+# Clean your single text input
+cleaned_text = clean_text_single(text)
+
+# Tokenize and pad
+sequence = tokenizers.texts_to_sequences([cleaned_text])  # Note the list wrapping
+padded_sequence = pad_sequences(sequence, maxlen=50)
 
 
-sample_text, sample_length = clean_text(text)
-tokenizer=Tokenizer()
-
-sample_text_seq=tokenizer.texts_to_sequences(sample_text)
-sample_text_pad=pad_sequences(sample_text_seq,maxlen=50)
-
-
-saved_model = load_model('hybrid_model.h5', custom_objects={'TransformerEncoder': TransformerEncoder})
-sample_input = sample_text_pad
-prediction = saved_model.predict(sample_input)
+# Predict
+prediction = hybrid_model.predict(padded_sequence)
 
 # Interpret the prediction
 threshold = 0.5
